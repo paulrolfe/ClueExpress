@@ -1,0 +1,215 @@
+<html>
+
+<h2>Players: <span id="players">3</span></h2>
+<button onclick="increase();">Increase</button><button onclick="decrease();">Decrease</button><br><br>
+
+<button onclick="startGame();">Start Game</button>
+
+<script>
+
+players = 3;
+weapon = -1;
+
+rooms = [
+	{
+		"Name": "Kitchen",
+		"Rules": "Reveal your role card to the player on your right.",
+		"Filename": "kitchen"
+	},
+	{
+		"Name": "Library",
+		"Rules": "No one may use their daytime abilities.",
+		"Filename": "library"
+	},
+	{
+		"Name": "Ballroom",
+		"Rules": "Everyone passes their weapon card two people to their left.",
+		"Filename": "ballroom"
+	},
+	{
+		"Name": "Study",
+		"Rules": "Everyone may now look at their own card.",
+		"Filename": "study"
+	},
+	{
+		"Name": "Bedroom",
+		"Rules": "The game will now end immediately.",
+		"Filename": "bedroom"
+	},
+	{
+		"Name": "Basement",
+		"Rules": "We will now begin another night phase. Everyone, close your eyes.",
+		"Filename": "basement"
+	},
+	{
+		"Name": "Billiard Room",
+		"Rules": "The pool cue is now ALSO a murder weapon.",
+		"Filename": "billiard"
+	},
+	{
+		"Name": "Attic",
+		"Rules": "Everyone pass your role card to the left, except for face up roles.",
+		"Filename": "attic"
+	},
+	{
+		"Name": "Dining Room",
+		"Rules": "Players with face up role cards may return them to being face down.",
+		"Filename": "dining room"
+	},
+	{
+		"Name": "Foyer",
+		"Rules": "The only murder weapon is now the chandelier.",
+		"Filename": "foyer"
+	}
+];
+
+characters = [
+	{
+		"Name": "Miss Scarlet",
+		"Rules": "Miss Scarlet, open your eyes. You may steal another player's weapon card and look at your new card. Then, close your eyes.",
+		"Filename": "scarlet"
+	},
+	{
+		"Name": "Colonel Mustard",
+		"Rules": "Colonel Mustard, open your eyes. You may now look at another player's weapon card. Then, close your eyes.",
+		"Filename": "mustard"
+	},
+	{
+		"Name": "Ms. Peacock",
+		"Rules": "Ms. Peacock, open your eyes. You may now swap any two weapon cards without looking at them. Then, close your eyes.",
+		"Filename": "peacock"
+	}
+
+	// White: Pass weapons to the left
+	// Plum: Pass weapons to the right
+	// Green: You may swap weapons with someone else without looking
+	// Woodsworth the Butler: Skip any room
+	// Police officer: Look at a player's card. If it's the murder weapon, you win, otherwise, you lose and keep playing.
+	// Telegram Girl: 
+	// Cook: If the murder weapon is a knife, you are an accomplice to the murder. If not, you may reveal your card to make the knife an additional murder weapon.
+];
+
+weapons = [
+	{
+		"Name": "Knife",
+		"Rules": "If the cook is in play, you might become the murderer.",
+		"Filename": "knife"
+	},
+	{
+		"Name": "Pistol",
+		"Rules": "", //"It's a pistol!"
+		"Filename": "pistol"
+	},
+	{
+		"Name": "Candlestick",
+		"Rules": "",
+		"Filename": "candlestick"
+	},
+		{
+		"Name": "Wrench",
+		"Rules": "", //"Throw a wrench in the works"
+		"Filename": "pistol"
+	},
+	{
+		"Name": "Lead pipe",
+		"Rules": "", // "Just add water"
+		"Filename": "pipe"
+	},
+	{
+		"Name": "Rope",
+		"Rules": "", //"Throw a wrench in the works"
+		"Filename": "rope"
+	},
+	{
+		"Name": "Pool Cue",
+		"Rules": "The pool cue becomes an additional murder weapon in the Billiard Room.",
+		"Filename": "poolcue"
+	},
+	{
+		"Name": "Telephone",
+		"Rules": "", 
+		"Filename": "telephone"
+	},
+	{
+		"Name": "Flashlight",
+		"Rules": "", 
+		"Filename": "hammer"
+	},
+	{
+		"Name": "Chandelier",
+		"Rules": "The chandelier can become the murder weapon in the foyer.", 
+		"Filename": "chandelier"
+	}
+
+	//Flashlight
+	//Fire poker
+
+]
+	
+</script>
+
+<audio id="leadpipe" preload="auto">
+  <source src="./leadpipe.mp3" type="audio/mpeg"/>
+</audio>
+
+<audio id="themurderweaponis" preload="auto">
+  <source src="./themurderweaponis.mp3" type="audio/mpeg"/>
+</audio>
+
+<audio id="lightsout" preload="auto">
+  <source src="./lightsout.mp3" type="audio/mpeg"/>
+</audio>
+
+
+<script>
+
+
+
+function increase(){
+	if(players < 10)
+	{
+		players++;
+		document.getElementById("players").innerHTML = players.toString();
+	}
+}
+
+function decrease(){
+	if(players > 3)
+	{
+		players--;
+		document.getElementById("players").innerHTML = players.toString();
+	}
+}
+
+function startGame() {
+	weapon = Math.floor((Math.random() * players) + 0);
+	playIntro();
+}
+
+
+function playIntro()
+{
+	var themurderweaponis = document.getElementById("themurderweaponis");
+	var lightsout = document.getElementById("lightsout");
+
+	murderweapon = 
+	
+	themurderweaponis.play();
+
+	//setTimeout(function(){
+	//	lightsout.play()
+	//
+	//}, 4000);
+	
+	//lightsout.play();
+}
+
+console.log(rooms.length);
+
+//playIntro();
+
+</script>
+
+
+
+</html>
